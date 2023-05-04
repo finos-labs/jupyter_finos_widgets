@@ -4,11 +4,11 @@
 # Copyright (c) Adaptive.
 # Distributed under the terms of the Modified BSD License.
 
-from .example import ExampleWidget
-from .channel import ChannelWidget
-from .context import ContextWidget
-from .ticker_input import TickerInputWidget
-from .connection_status import ConnectionStatusWidget
+from .fdc3_version import FDC3Version
+from .fdc3_channel_join import FDC3ChannelJoin
+from .fdc3_context_display import FDC3ContextDisplay
+from .fdc3_ticker_input import FDC3TickerInput
+from .fdc3_connection_status import FDC3ConnectionStatus
 from ._version import __version__, version_info
 
 def _jupyter_labextension_paths():

@@ -13,12 +13,12 @@ from traitlets import Unicode
 from ._frontend import module_name, module_version
 
 
-class ContextWidget(DOMWidget):
+class FDC3ConnectionStatus(DOMWidget):
     """TODO: Add docstring here
     """
-    _model_name = Unicode('ContextModel').tag(sync=True)
+    _model_name = Unicode('FDC3ConnectionStatusModel').tag(sync=True)
     _model_module = Unicode(module_name).tag(sync=True)
     _model_module_version = Unicode(module_version).tag(sync=True)
-    _view_name = Unicode('ContextView').tag(sync=True)
+    _view_name = Unicode('FDC3ConnectionStatusView').tag(sync=True)
     _view_module = Unicode(module_name).tag(sync=True)
     _view_module_version = Unicode(module_version).tag(sync=True)
