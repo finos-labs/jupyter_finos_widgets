@@ -93,11 +93,13 @@ export class FDC3ChannelJoinView extends DOMWidgetView {
   async selectChannel(id: string) {
     await fdc3.joinChannel(id);
     this.model.set('channelId', id);
+    this.model.save_changes();
   }
 
   async leaveChannel() {
     await fdc3.leaveCurrentChannel();
     this.model.set('channelId', null);
+    this.model.save_changes();
   }
 
   render() {
