@@ -13,12 +13,12 @@ from traitlets import Unicode
 from ._frontend import module_name, module_version
 
 
-class ChannelWidget(DOMWidget):
+class FDC3ContextDisplay(DOMWidget):
     """TODO: Add docstring here
     """
-    _model_name = Unicode('ChannelModel').tag(sync=True)
+    _model_name = Unicode('FDC3ContextDisplayModel').tag(sync=True)
     _model_module = Unicode(module_name).tag(sync=True)
     _model_module_version = Unicode(module_version).tag(sync=True)
-    _view_name = Unicode('ChannelView').tag(sync=True)
+    _view_name = Unicode('FDC3ContextDisplayView').tag(sync=True)
     _view_module = Unicode(module_name).tag(sync=True)
     _view_module_version = Unicode(module_version).tag(sync=True)

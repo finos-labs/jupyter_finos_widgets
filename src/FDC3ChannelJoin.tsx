@@ -48,16 +48,16 @@ const ChannelPicker = ({
   </ul>
 );
 
-export class ChannelModel extends DOMWidgetModel {
+export class FDC3ChannelJoinModel extends DOMWidgetModel {
   defaults() {
     return {
       ...super.defaults(),
-      _model_name: ChannelModel.model_name,
-      _model_module: ChannelModel.model_module,
-      _model_module_version: ChannelModel.model_module_version,
-      _view_name: ChannelModel.view_name,
-      _view_module: ChannelModel.view_module,
-      _view_module_version: ChannelModel.view_module_version,
+      _model_name: FDC3ChannelJoinModel.model_name,
+      _model_module: FDC3ChannelJoinModel.model_module,
+      _model_module_version: FDC3ChannelJoinModel.model_module_version,
+      _view_name: FDC3ChannelJoinModel.view_name,
+      _view_module: FDC3ChannelJoinModel.view_module,
+      _view_module_version: FDC3ChannelJoinModel.view_module_version,
       userChannels: [],
       channelId: null,
     };
@@ -72,18 +72,17 @@ export class ChannelModel extends DOMWidgetModel {
 
   static serializers: ISerializers = {
     ...DOMWidgetModel.serializers,
-    // Add any extra serializers here
   };
 
-  static model_name = 'ChannelModel';
+  static model_name = 'FDC3ChannelJoinModel';
   static model_module = MODULE_NAME;
   static model_module_version = MODULE_VERSION;
-  static view_name = 'ChannelView'; // Set to null if no view
-  static view_module = MODULE_NAME; // Set to null if no view
+  static view_name = 'FDC3ChannelJoinView';
+  static view_module = MODULE_NAME;
   static view_module_version = MODULE_VERSION;
 }
 
-export class ChannelView extends DOMWidgetView {
+export class FDC3ChannelJoinView extends DOMWidgetView {
   constructor(opts: any) {
     super(opts);
     this.model.bind('change', this.render.bind(this));
