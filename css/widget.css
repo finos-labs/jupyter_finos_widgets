@@ -17,3 +17,30 @@
 .failure {
   background-color: #d94f40;
 }
+
+.channel-list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.channel-button {
+  box-sizing: border-box;
+  border: none;
+  border-radius: 0;
+  width: 60px;
+  height: 30px;
+}
+
+.channel-button:hover {
+  cursor: pointer;
+  opacity: 90%;
+}
+
+.channel-button:active {
+  opacity: 60%;
+}
+
+.channel-button:disabled {
+  border: 1px solid black;
+}

@@ -40,7 +40,7 @@ const ChannelPicker = ({
         );
       }),
       <li>
-        <button class="leave-button" disabled={!channelId} onClick={onLeave}>
+        <button class="channel-button" disabled={!channelId} onClick={onLeave}>
           Leave
         </button>
       </li>,
