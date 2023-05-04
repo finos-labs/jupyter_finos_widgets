@@ -1,0 +1,19 @@
+.connection-status-widget {
+  background-color: #383d45;
+  display: flex;
+  border-radius: 5px;
+  max-width: fit-content;
+}
+
+.connection-status-widget > p {
+  padding: 7px 7px 0 7px;
+  color: #fbffff;
+}
+
+.success {
+  background-color: #58a55c;
+}
+
+.failure {
+  background-color: #d94f40;
+}

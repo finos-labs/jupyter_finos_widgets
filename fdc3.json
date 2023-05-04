@@ -1,0 +1,27 @@
+{
+  "platform": {
+    "uuid": "example_platform",
+    "applicationIcon": "https://openfin.github.io/golden-prototype/favicon.ico",
+    "autoShow": false,
+    "defaultWindowOptions": {
+      "fdc3InteropApi": "2.0",
+      "cornerRounding": {
+        "height": 10,
+        "width": 10
+      },
+      "contextMenu": true
+    }
+  },
+  "snapshot": {
+    "windows": [
+      {
+        "defaultWidth": 600,
+        "defaultHeight": 600,
+        "url": "http://localhost:8888/lab"
+      }
+    ]
+  },
+  "runtime": {
+    "version": "stable"
+  }
+}
