@@ -9,7 +9,7 @@ TODO: Add module docstring
 """
 
 from ipywidgets import DOMWidget
-from traitlets import Unicode
+from traitlets import Unicode, Dict
 from ._frontend import module_name, module_version
 
 
@@ -22,3 +22,5 @@ class FDC3ContextDisplay(DOMWidget):
     _view_name = Unicode('FDC3ContextDisplayView').tag(sync=True)
     _view_module = Unicode(module_name).tag(sync=True)
     _view_module_version = Unicode(module_version).tag(sync=True)
+    context = Dict({}).tag(sync=True)
+    contextType = Unicode(None, True).tag(sync=True)
