@@ -22,3 +22,4 @@ class FDC3ChannelJoin(DOMWidget):
     _view_name = Unicode('FDC3ChannelJoinView').tag(sync=True)
     _view_module = Unicode(module_name).tag(sync=True)
     _view_module_version = Unicode(module_version).tag(sync=True)
+    channelId = Unicode(None, True).tag(sync=True)
