@@ -67,7 +67,14 @@ export class FDC3ChannelJoinModel extends DOMWidgetModel {
     super.initialize(attr, opts);
     await fdc3.fdc3Ready();
     this.set('channelId', (await fdc3.getCurrentChannel())?.id);
-    this.set('userChannels', await fdc3.getUserChannels());
+    this.set(
+      'userChannels',
+      (await fdc3.getUserChannels()).map(({ type, id, displayMetadata }) => ({
+        type,
+        id,
+        displayMetadata,
+      }))
+    );
   }
 
   static serializers: ISerializers = {

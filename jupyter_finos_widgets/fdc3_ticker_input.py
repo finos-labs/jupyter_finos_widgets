@@ -22,4 +22,4 @@ class FDC3TickerInput(DOMWidget):
     _view_name = Unicode('FDC3TickerInputView').tag(sync=True)
     _view_module = Unicode(module_name).tag(sync=True)
     _view_module_version = Unicode(module_version).tag(sync=True)
-    ticker = Unicode('').tag(sync=True)
+    value = Unicode('').tag(sync=True)

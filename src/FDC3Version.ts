@@ -21,7 +21,7 @@ export class FDC3VersionModel extends DOMWidgetModel {
       _view_name: FDC3VersionModel.view_name,
       _view_module: FDC3VersionModel.view_module,
       _view_module_version: FDC3VersionModel.view_module_version,
-      fdc3Info: {},
+      value: null,
     };
   }
 
@@ -29,7 +29,8 @@ export class FDC3VersionModel extends DOMWidgetModel {
     super.initialize(attr, opts);
     await fdc3.fdc3Ready();
     const info = await fdc3.getInfo();
-    this.set('fdc3Info', info);
+    this.set('value', info.fdc3Version);
+    this.save_changes();
   }
 
   static serializers: ISerializers = {
@@ -47,11 +48,11 @@ export class FDC3VersionModel extends DOMWidgetModel {
 export class FDC3VersionView extends DOMWidgetView {
   render() {
     this.value_changed();
-    this.model.on('change:fdc3Info', this.value_changed, this);
+    this.model.on('change:value', this.value_changed, this);
   }
 
   value_changed() {
-    const { fdc3Version } = this.model.get('fdc3Info');
+    const fdc3Version = this.model.get('value');
     this.el.textContent = `FDC3 Version: ${fdc3Version}`;
   }
 }

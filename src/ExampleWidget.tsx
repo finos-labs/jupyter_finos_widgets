@@ -9,12 +9,12 @@ import { MODULE_NAME, MODULE_VERSION } from './version';
 import { render } from 'preact';
 
 interface Props {
-  greeting: string
-};
+  greeting: string;
+}
 
 const Example = ({ greeting }: Props) => {
   return <div>{greeting}</div>;
-}
+};
 
 export class ExampleModel extends DOMWidgetModel {
   defaults() {
@@ -26,7 +26,7 @@ export class ExampleModel extends DOMWidgetModel {
       _view_name: ExampleModel.view_name,
       _view_module: ExampleModel.view_module,
       _view_module_version: ExampleModel.view_module_version,
-      greeting: "Hello World"
+      greeting: 'Hello World',
     };
   }
 
@@ -50,6 +50,6 @@ export class ExampleView extends DOMWidgetView {
   }
 
   render() {
-    render(<Example greeting={this.model.get('greeting')}/>, this.el);
+    render(<Example greeting={this.model.get('greeting')} />, this.el);
   }
 }
