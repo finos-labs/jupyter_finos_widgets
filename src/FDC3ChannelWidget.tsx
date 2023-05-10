@@ -17,25 +17,36 @@ interface Props {
   onLeave: () => void;
 }
 
-const ChannelPicker = ({ channelId, userChannels, onSelect, onLeave }: Props) => (
+const ChannelPicker = ({
+  channelId,
+  userChannels,
+  onSelect,
+  onLeave,
+}: Props) => (
   <ul class="channel-list">
-    {[...userChannels.map(({ displayMetadata: { name, color }, id }) => {
-      return (
-        <li>
-          <button class="channel-button" style={{backgroundColor: color}} disabled={channelId === id} onClick={onSelect.bind(null, id)}>
-            {name}
-          </button>
-        </li>
-      );
-    }), (
+    {[
+      ...userChannels.map(({ displayMetadata: { name, color }, id }) => {
+        return (
+          <li>
+            <button
+              class="channel-button"
+              style={{ backgroundColor: color }}
+              disabled={channelId === id}
+              onClick={onSelect.bind(null, id)}
+            >
+              {name}
+            </button>
+          </li>
+        );
+      }),
       <li>
         <button class="leave-button" disabled={!channelId} onClick={onLeave}>
           Leave
         </button>
-      </li>
-    )]}
+      </li>,
+    ]}
   </ul>
-)
+);
 
 export class ChannelModel extends DOMWidgetModel {
   defaults() {
@@ -73,7 +84,6 @@ export class ChannelModel extends DOMWidgetModel {
 }
 
 export class ChannelView extends DOMWidgetView {
-
   constructor(opts: any) {
     super(opts);
     this.model.bind('change', this.render.bind(this));
@@ -96,8 +106,8 @@ export class ChannelView extends DOMWidgetView {
       channelId: this.model.get('channelId'),
       userChannels: this.model.get('userChannels'),
       onSelect: this.selectChannel,
-      onLeave: this.leaveChannel
+      onLeave: this.leaveChannel,
     };
-    render(<ChannelPicker {...props}/>, this.el)
+    render(<ChannelPicker {...props} />, this.el);
   }
 }

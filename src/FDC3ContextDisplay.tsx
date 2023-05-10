@@ -20,32 +20,40 @@ interface Props {
 }
 
 const CONTEXT_TYPES = [
-  "fdc3.contact",
-  "fdc3.contactList",
-  "fdc3.country",
-  "fdc3.instrument",
-  "fdc3.instrumentList",
-  "fdc3.organization",
-  "fdc3.position",
-  "fdc3.portfolio"
+  'fdc3.contact',
+  'fdc3.contactList',
+  'fdc3.country',
+  'fdc3.instrument',
+  'fdc3.instrumentList',
+  'fdc3.organization',
+  'fdc3.position',
+  'fdc3.portfolio',
 ];
 
-const ContextDisplay = ({ contextType, context, onContextTypeChange }: Props) => (
+const ContextDisplay = ({
+  contextType,
+  context,
+  onContextTypeChange,
+}: Props) => (
   <div>
     <div>
       <label for="context-type">Select Context Type: </label>
-      <select name="context-type" value={contextType} onChange={(e: any) => onContextTypeChange(e.target.value)}>
+      <select
+        name="context-type"
+        value={contextType}
+        onChange={(e: any) => onContextTypeChange(e.target.value)}
+      >
         {CONTEXT_TYPES.map((contextType) => {
           const contextName = contextType.split('.')[1];
           return (
-            <option value={contextType}>{contextName.charAt(0).toUpperCase() + contextName.slice(1)}</option>
+            <option value={contextType}>
+              {contextName.charAt(0).toUpperCase() + contextName.slice(1)}
+            </option>
           );
         })}
       </select>
     </div>
-    <pre>
-      {JSON.stringify(context, undefined, 2)}
-    </pre>
+    <pre>{JSON.stringify(context, undefined, 2)}</pre>
   </div>
 );
 
@@ -62,13 +70,19 @@ export class FDC3ContextDisplayModel extends DOMWidgetModel {
       _view_module: FDC3ContextDisplayModel.view_module,
       _view_module_version: FDC3ContextDisplayModel.view_module_version,
       contextType: null,
-      context: {}
+      context: {},
     };
   }
 
   async onContextChange() {
     this._listener?.unsubscribe();
-    this._listener = await fdc3.addContextListener(this.get('contextType'), this.set.bind(this, 'context'));
+    this._listener = await fdc3.addContextListener(
+      this.get('contextType'),
+      (ctx) => {
+        this.set('context', ctx);
+        this.save_changes();
+      }
+    );
   }
 
   async initialize(attr: any, opts: any) {
@@ -103,8 +117,9 @@ export class FDC3ContextDisplayView extends DOMWidgetView {
       onContextTypeChange: (value) => {
         this.model.set('contextType', value);
         this.model.set('context', {});
-      }
-    }
+        this.model.save_changes();
+      },
+    };
     render(<ContextDisplay {...props} />, this.el);
   }
 }
