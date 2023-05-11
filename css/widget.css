@@ -51,3 +51,42 @@
   border: 1.5px solid black;
   box-shadow: inset 0px 0px 50px rgba(255, 255, 255, 0.5);
 }
+
+/* --- RAISE INTENT WIDGET --- */
+
+.raise-intent-widget {
+  padding: 5px 0;
+}
+
+.raise-intent-widget > select {
+  height: 36px;
+  padding: 0 7px;
+  color: #254d7e;
+  margin-right: 10px;
+  border-radius: 3px;
+  border: 1px solid #27578c;
+}
+
+.raise-intent-widget > select:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.raise-intent-widget > button {
+  height: 36px;
+  border: none;
+  padding: 0 7px;
+  color: #ffffff;
+  border-radius: 3px;
+  background-color: #254d7e;
+}
+
+.raise-intent-widget > button:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.raise-intent-widget > p {
+  color: red;
+  padding-top: 5px;
+}
