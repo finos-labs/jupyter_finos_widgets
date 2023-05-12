@@ -9,7 +9,7 @@ from .fdc3_channel_join import FDC3ChannelJoin
 from .fdc3_context_display import FDC3ContextDisplay
 from .fdc3_ticker_input import FDC3TickerInput
 from .fdc3_connection_status import FDC3ConnectionStatus
-from .fdc3_view_news import FDC3ViewNews
+from .fdc3_raise_intent import FDC3RaiseIntent
 from ._version import __version__, version_info
 
 def _jupyter_labextension_paths():

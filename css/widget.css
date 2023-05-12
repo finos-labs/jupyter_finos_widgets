@@ -1,3 +1,5 @@
+/* --- CONNECTION STATUS WIDGET --- */
+
 .connection-status-widget {
   background-color: #383d45;
   display: flex;
@@ -18,29 +20,73 @@
   background-color: #d94f40;
 }
 
+/* --- CHANNEL JOIN WIDGET --- */
+
 .channel-list {
-  display: flex;
   margin: 0;
-  padding: 0;
+  display: flex;
+  padding: 5px 0;
 }
 
 .channel-button {
   box-sizing: border-box;
   border: none;
-  border-radius: 0;
+  border-radius: 3px;
   width: 60px;
   height: 30px;
+  margin-right: 5px;
 }
 
 .channel-button:hover {
   cursor: pointer;
-  opacity: 90%;
+  box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.5);
 }
 
 .channel-button:active {
-  opacity: 60%;
+  box-shadow: inset 0px 0px 50px rgba(255, 255, 255, 0.5);
 }
 
 .channel-button:disabled {
-  border: 1px solid black;
+  color: black;
+  border: 1.5px solid black;
+  box-shadow: inset 0px 0px 50px rgba(255, 255, 255, 0.5);
+}
+
+/* --- RAISE INTENT WIDGET --- */
+
+.raise-intent-widget {
+  padding: 5px 0;
+}
+
+.raise-intent-widget > select {
+  height: 36px;
+  padding: 0 7px;
+  color: #254d7e;
+  margin-right: 10px;
+  border-radius: 3px;
+  border: 1px solid #27578c;
+}
+
+.raise-intent-widget > select:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.raise-intent-widget > button {
+  height: 36px;
+  border: none;
+  padding: 0 7px;
+  color: #ffffff;
+  border-radius: 3px;
+  background-color: #254d7e;
+}
+
+.raise-intent-widget > button:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.raise-intent-widget > p {
+  color: red;
+  padding-top: 5px;
 }
