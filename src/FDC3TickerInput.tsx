@@ -5,35 +5,35 @@ import {
   DOMWidgetModel,
   DOMWidgetView,
   ISerializers,
-} from '@jupyter-widgets/base';
+} from '@jupyter-widgets/base'
 
-import * as fdc3 from '@finos/fdc3';
+import * as fdc3 from '@finos/fdc3'
 
-import { render } from 'preact';
-import { useState, useEffect, useCallback } from 'preact/hooks';
+import { render } from 'preact'
+import { useState, useEffect, useCallback } from 'preact/hooks'
 
-import { MODULE_NAME, MODULE_VERSION } from './version';
+import { MODULE_NAME, MODULE_VERSION } from './version'
 
 interface Props {
-  value: string;
-  error: string;
-  onSubmit: (v: any) => void;
+  value: string
+  error: string
+  onSubmit: (v: any) => void
 }
 
 const TickerInput = ({ value, error, onSubmit }: Props) => {
-  const [ticker, setTicker] = useState(value);
-  const onInput = (e: any) => setTicker(e.target.value);
+  const [ticker, setTicker] = useState(value)
+  const onInput = (e: any) => setTicker(e.target.value)
   const submit = useCallback(
     (e: any) => {
-      e.preventDefault();
-      onSubmit(ticker);
+      e.preventDefault()
+      onSubmit(ticker)
     },
     [ticker]
-  );
+  )
 
   useEffect(() => {
-    setTicker(value);
-  }, [value]);
+    setTicker(value)
+  }, [value])
 
   return (
     <div>
@@ -43,11 +43,11 @@ const TickerInput = ({ value, error, onSubmit }: Props) => {
         <p style={{ color: 'red' }}>{error}</p>
       </form>
     </div>
-  );
-};
+  )
+}
 
 export class FDC3TickerInputModel extends DOMWidgetModel {
-  private _listener: any = null;
+  private _listener: any = null
 
   defaults() {
     return {
@@ -60,67 +60,67 @@ export class FDC3TickerInputModel extends DOMWidgetModel {
       _view_module_version: FDC3TickerInputModel.view_module_version,
       value: '',
       error: '',
-    };
+    }
   }
 
   async initialize(attr: any, opts: any) {
-    super.initialize(attr, opts);
+    super.initialize(attr, opts)
     this.on('change:value', async ({ changed: { value } }) => {
-      await fdc3.fdc3Ready();
+      await fdc3.fdc3Ready()
       if (value) {
         try {
           await fdc3.broadcast({
             type: 'fdc3.instrument',
             id: { ticker: value },
-          });
-          this.set('error', '');
+          })
+          this.set('error', '')
         } catch (e: any) {
-          this.set('error', e.message);
+          this.set('error', e.message)
         }
       } else {
-        const error = 'Ticker input is empty';
-        this.set('error', error, { silent: true });
-        this.trigger('change');
+        const error = 'Ticker input is empty'
+        this.set('error', error, { silent: true })
+        this.trigger('change')
       }
-    });
+    })
 
-    await fdc3.fdc3Ready();
-    this._listener?.unsubscribe();
+    await fdc3.fdc3Ready()
+    this._listener?.unsubscribe()
     this._listener = await fdc3.addContextListener(
       'fdc3.instrument',
       (ctx: any) => {
-        this.set('value', ctx.id.ticker);
-        this.save_changes();
+        this.set('value', ctx.id.ticker)
+        this.save_changes()
       }
-    );
+    )
   }
 
   static serializers: ISerializers = {
     ...DOMWidgetModel.serializers,
-  };
+  }
 
-  static model_name = 'FDC3TickerInputModel';
-  static model_module = MODULE_NAME;
-  static model_module_version = MODULE_VERSION;
-  static view_name = 'FDC3TickerInputView';
-  static view_module = MODULE_NAME;
-  static view_module_version = MODULE_VERSION;
+  static model_name = 'FDC3TickerInputModel'
+  static model_module = MODULE_NAME
+  static model_module_version = MODULE_VERSION
+  static view_name = 'FDC3TickerInputView'
+  static view_module = MODULE_NAME
+  static view_module_version = MODULE_VERSION
 }
 
 export class FDC3TickerInputView extends DOMWidgetView {
   constructor(opts: any) {
-    super(opts);
-    this.model.bind('change', this.render.bind(this));
-    this.submit = this.submit.bind(this);
+    super(opts)
+    this.model.bind('change', this.render.bind(this))
+    this.submit = this.submit.bind(this)
   }
 
   submit(ticker: string) {
-    console.log(ticker, this.model.get('value'));
+    console.log(ticker, this.model.get('value'))
     if (this.model.get('value') === ticker) {
-      this.model.trigger('change:value', { changed: { value: ticker } });
+      this.model.trigger('change:value', { changed: { value: ticker } })
     } else {
-      this.model.set('value', ticker);
-      this.model.save_changes();
+      this.model.set('value', ticker)
+      this.model.save_changes()
     }
   }
 
@@ -129,7 +129,7 @@ export class FDC3TickerInputView extends DOMWidgetView {
       value: this.model.get('value'),
       error: this.model.get('error'),
       onSubmit: this.submit,
-    };
-    render(<TickerInput {...props} />, this.el);
+    }
+    render(<TickerInput {...props} />, this.el)
   }
 }

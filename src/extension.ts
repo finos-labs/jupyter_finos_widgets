@@ -9,8 +9,8 @@
 // url for the notebook is not known at build time and is therefore computed
 // dynamically.
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-(window as any).__webpack_public_path__ =
+;(window as any).__webpack_public_path__ =
   document.querySelector('body')!.getAttribute('data-base-url') +
-  'nbextensions/jupyter_finos_widgets';
+  'nbextensions/jupyter_finos_widgets'
 
-export * from './index';
+export * from './index'

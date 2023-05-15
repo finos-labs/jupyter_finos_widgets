@@ -2,19 +2,19 @@ import {
   DOMWidgetModel,
   DOMWidgetView,
   ISerializers,
-} from '@jupyter-widgets/base';
+} from '@jupyter-widgets/base'
 
-import * as fdc3 from '@finos/fdc3';
+import * as fdc3 from '@finos/fdc3'
 
-import { render } from 'preact';
+import { render } from 'preact'
 
-import { MODULE_NAME, MODULE_VERSION } from './version';
+import { MODULE_NAME, MODULE_VERSION } from './version'
 
 interface Props {
-  channelId: string;
-  userChannels: any[];
-  onSelect: (id: string) => void;
-  onLeave: () => void;
+  channelId: string
+  userChannels: any[]
+  onSelect: (id: string) => void
+  onLeave: () => void
 }
 
 const ChannelPicker = ({
@@ -37,7 +37,7 @@ const ChannelPicker = ({
               {name}
             </button>
           </li>
-        );
+        )
       }),
       <li>
         <button class="channel-button" disabled={!channelId} onClick={onLeave}>
@@ -46,7 +46,7 @@ const ChannelPicker = ({
       </li>,
     ]}
   </ul>
-);
+)
 
 export class FDC3ChannelJoinModel extends DOMWidgetModel {
   defaults() {
@@ -60,13 +60,13 @@ export class FDC3ChannelJoinModel extends DOMWidgetModel {
       _view_module_version: FDC3ChannelJoinModel.view_module_version,
       userChannels: [],
       channelId: null,
-    };
+    }
   }
 
   async initialize(attr: any, opts: any) {
-    super.initialize(attr, opts);
-    await fdc3.fdc3Ready();
-    this.set('channelId', (await fdc3.getCurrentChannel())?.id);
+    super.initialize(attr, opts)
+    await fdc3.fdc3Ready()
+    this.set('channelId', (await fdc3.getCurrentChannel())?.id)
     this.set(
       'userChannels',
       (await fdc3.getUserChannels()).map(({ type, id, displayMetadata }) => ({
@@ -74,39 +74,39 @@ export class FDC3ChannelJoinModel extends DOMWidgetModel {
         id,
         displayMetadata,
       }))
-    );
+    )
   }
 
   static serializers: ISerializers = {
     ...DOMWidgetModel.serializers,
-  };
+  }
 
-  static model_name = 'FDC3ChannelJoinModel';
-  static model_module = MODULE_NAME;
-  static model_module_version = MODULE_VERSION;
-  static view_name = 'FDC3ChannelJoinView';
-  static view_module = MODULE_NAME;
-  static view_module_version = MODULE_VERSION;
+  static model_name = 'FDC3ChannelJoinModel'
+  static model_module = MODULE_NAME
+  static model_module_version = MODULE_VERSION
+  static view_name = 'FDC3ChannelJoinView'
+  static view_module = MODULE_NAME
+  static view_module_version = MODULE_VERSION
 }
 
 export class FDC3ChannelJoinView extends DOMWidgetView {
   constructor(opts: any) {
-    super(opts);
-    this.model.bind('change', this.render.bind(this));
-    this.selectChannel = this.selectChannel.bind(this);
-    this.leaveChannel = this.leaveChannel.bind(this);
+    super(opts)
+    this.model.bind('change', this.render.bind(this))
+    this.selectChannel = this.selectChannel.bind(this)
+    this.leaveChannel = this.leaveChannel.bind(this)
   }
 
   async selectChannel(id: string) {
-    await fdc3.joinChannel(id);
-    this.model.set('channelId', id);
-    this.model.save_changes();
+    await fdc3.joinChannel(id)
+    this.model.set('channelId', id)
+    this.model.save_changes()
   }
 
   async leaveChannel() {
-    await fdc3.leaveCurrentChannel();
-    this.model.set('channelId', null);
-    this.model.save_changes();
+    await fdc3.leaveCurrentChannel()
+    this.model.set('channelId', null)
+    this.model.save_changes()
   }
 
   render() {
@@ -115,7 +115,7 @@ export class FDC3ChannelJoinView extends DOMWidgetView {
       userChannels: this.model.get('userChannels'),
       onSelect: this.selectChannel,
       onLeave: this.leaveChannel,
-    };
-    render(<ChannelPicker {...props} />, this.el);
+    }
+    render(<ChannelPicker {...props} />, this.el)
   }
 }

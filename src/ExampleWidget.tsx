@@ -2,19 +2,19 @@ import {
   DOMWidgetView,
   DOMWidgetModel,
   ISerializers,
-} from '@jupyter-widgets/base';
+} from '@jupyter-widgets/base'
 
-import { MODULE_NAME, MODULE_VERSION } from './version';
+import { MODULE_NAME, MODULE_VERSION } from './version'
 
-import { render } from 'preact';
+import { render } from 'preact'
 
 interface Props {
-  greeting: string;
+  greeting: string
 }
 
 const Example = ({ greeting }: Props) => {
-  return <div>{greeting}</div>;
-};
+  return <div>{greeting}</div>
+}
 
 export class ExampleModel extends DOMWidgetModel {
   defaults() {
@@ -27,29 +27,29 @@ export class ExampleModel extends DOMWidgetModel {
       _view_module: ExampleModel.view_module,
       _view_module_version: ExampleModel.view_module_version,
       greeting: 'Hello World',
-    };
+    }
   }
 
   static serializers: ISerializers = {
     ...DOMWidgetModel.serializers,
     // Add any extra serializers here
-  };
+  }
 
-  static model_name = 'ExampleModel';
-  static model_module = MODULE_NAME;
-  static model_module_version = MODULE_VERSION;
-  static view_name = 'ExampleView'; // Set to null if no view
-  static view_module = MODULE_NAME; // Set to null if no view
-  static view_module_version = MODULE_VERSION;
+  static model_name = 'ExampleModel'
+  static model_module = MODULE_NAME
+  static model_module_version = MODULE_VERSION
+  static view_name = 'ExampleView' // Set to null if no view
+  static view_module = MODULE_NAME // Set to null if no view
+  static view_module_version = MODULE_VERSION
 }
 
 export class ExampleView extends DOMWidgetView {
   constructor(opts: any) {
-    super(opts);
-    this.model.bind('greeting', this.render.bind(this));
+    super(opts)
+    this.model.bind('greeting', this.render.bind(this))
   }
 
   render() {
-    render(<Example greeting={this.model.get('greeting')} />, this.el);
+    render(<Example greeting={this.model.get('greeting')} />, this.el)
   }
 }
