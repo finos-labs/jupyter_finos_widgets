@@ -13,4 +13,4 @@ module.exports = {
       tsconfig: '<rootDir>/tsconfig.json',
     },
   },
-};
+}
