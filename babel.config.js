@@ -1,10 +1,12 @@
 module.exports = {
   sourceMap: 'inline',
   plugins: [
-    '@babel/plugin-transform-react-jsx',
-    {
-      pragma: 'h',
-    },
+    [
+      '@babel/plugin-transform-react-jsx',
+      {
+        pragma: 'h',
+      },
+    ],
   ],
   presets: [
     [
