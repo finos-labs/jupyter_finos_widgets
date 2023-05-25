@@ -8,7 +8,7 @@ import {
 
 import * as fdc3 from '@finos/fdc3'
 
-import { render } from 'preact'
+import { render as preactRender } from 'preact'
 
 import { MODULE_NAME, MODULE_VERSION } from './version'
 
@@ -119,6 +119,6 @@ export class ChannelView extends DOMWidgetView {
       onLeave: this.leaveChannel,
     }
 
-    render(<ChannelPicker {...props} />, this.el)
+    preactRender(<ChannelPicker {...props} />, this.el)
   }
 }
