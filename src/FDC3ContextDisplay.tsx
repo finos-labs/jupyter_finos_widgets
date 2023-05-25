@@ -4,10 +4,12 @@
 import {
   DOMWidgetModel,
   DOMWidgetView,
+  IBackboneModelOptions,
   ISerializers,
+  WidgetModel,
 } from '@jupyter-widgets/base'
 
-import { render } from 'preact'
+import { render as preactRender } from 'preact'
 
 import * as fdc3 from '@finos/fdc3'
 
@@ -60,7 +62,7 @@ const ContextDisplay = ({
 export class FDC3ContextDisplayModel extends DOMWidgetModel {
   private _listener: any = null
 
-  defaults() {
+  defaults(): Backbone.ObjectHash {
     return {
       ...super.defaults(),
       _model_name: FDC3ContextDisplayModel.model_name,
@@ -74,7 +76,7 @@ export class FDC3ContextDisplayModel extends DOMWidgetModel {
     }
   }
 
-  async onContextChange() {
+  async onContextChange(): Promise<void> {
     this._listener?.unsubscribe()
     this._listener = await fdc3.addContextListener(
       this.get('contextType'),
@@ -85,7 +87,10 @@ export class FDC3ContextDisplayModel extends DOMWidgetModel {
     )
   }
 
-  async initialize(attr: any, opts: any) {
+  async initialize(
+    attr: Backbone.ObjectHash,
+    opts: IBackboneModelOptions
+  ): Promise<void> {
     super.initialize(attr, opts)
     await fdc3.fdc3Ready()
     this.on('change:contextType', this.onContextChange.bind(this))
@@ -105,12 +110,12 @@ export class FDC3ContextDisplayModel extends DOMWidgetModel {
 }
 
 export class FDC3ContextDisplayView extends DOMWidgetView {
-  constructor(opts: any) {
+  constructor(opts: Backbone.ViewOptions<WidgetModel>) {
     super(opts)
     this.model.bind('change', this.render.bind(this))
   }
 
-  render() {
+  render(): void {
     const props: Props = {
       contextType: this.model.get('contextType'),
       context: this.model.get('context'),
@@ -120,6 +125,7 @@ export class FDC3ContextDisplayView extends DOMWidgetView {
         this.model.save_changes()
       },
     }
-    render(<ContextDisplay {...props} />, this.el)
+
+    preactRender(<ContextDisplay {...props} />, this.el)
   }
 }

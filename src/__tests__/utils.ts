@@ -54,8 +54,8 @@ export class DummyManager extends baseManager.ManagerBase {
   display_view(
     msg: services.KernelMessage.IMessage,
     view: widgets.DOMWidgetView,
-    options: any
-  ) {
+    options: Backbone.ObjectHash
+  ): Promise<HTMLElement> {
     // TODO: make this a spy
     // TODO: return an html element
     return Promise.resolve(view).then((view) => {
@@ -87,11 +87,11 @@ export class DummyManager extends baseManager.ManagerBase {
     }
   }
 
-  _get_comm_info() {
+  _get_comm_info(): Promise<Record<string, unknown>> {
     return Promise.resolve({})
   }
 
-  _create_comm() {
+  _create_comm(): Promise<MockComm> {
     return Promise.resolve(new MockComm())
   }
 
@@ -106,7 +106,7 @@ export interface Constructor<T> {
 
 export function createTestModel<T extends widgets.WidgetModel>(
   constructor: Constructor<T>,
-  attributes?: any
+  attributes?: Backbone.ObjectHash
 ): T {
   const id = widgets.uuid()
   const widget_manager = new DummyManager()

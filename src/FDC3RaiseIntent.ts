@@ -4,6 +4,7 @@
 import {
   DOMWidgetModel,
   DOMWidgetView,
+  IBackboneModelOptions,
   ISerializers,
 } from '@jupyter-widgets/base'
 
@@ -11,7 +12,7 @@ import * as fdc3 from '@finos/fdc3'
 
 import { MODULE_NAME, MODULE_VERSION } from './version'
 export class FDC3RaiseIntentModel extends DOMWidgetModel {
-  defaults() {
+  defaults(): Backbone.ObjectHash {
     return {
       ...super.defaults(),
       _model_name: FDC3RaiseIntentModel.model_name,
@@ -25,7 +26,10 @@ export class FDC3RaiseIntentModel extends DOMWidgetModel {
     }
   }
 
-  async initialize(attr: any, opts: any): Promise<void> {
+  async initialize(
+    attr: Backbone.ObjectHash,
+    opts: IBackboneModelOptions
+  ): Promise<void> {
     super.initialize(attr, opts)
     await fdc3.fdc3Ready()
     fdc3.addContextListener('fdc3.instrument', (ctx) => {
@@ -47,7 +51,7 @@ export class FDC3RaiseIntentModel extends DOMWidgetModel {
 }
 
 export class FDC3RaiseIntentView extends DOMWidgetView {
-  render() {
+  render(): void {
     this.el.classList.add('raise-intent-widget')
     this.selectDropdown = document.createElement('select')
     this.selectDropdown.appendChild(createPlaceholderOption())

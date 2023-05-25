@@ -1,12 +1,14 @@
 import {
   DOMWidgetModel,
   DOMWidgetView,
+  IBackboneModelOptions,
   ISerializers,
+  WidgetModel,
 } from '@jupyter-widgets/base'
 
 import * as fdc3 from '@finos/fdc3'
 
-import { render } from 'preact'
+import { render as preactRender } from 'preact'
 
 import { MODULE_NAME, MODULE_VERSION } from './version'
 
@@ -53,7 +55,7 @@ const ChannelPicker = ({
 )
 
 export class FDC3ChannelJoinModel extends DOMWidgetModel {
-  defaults() {
+  defaults(): Backbone.ObjectHash {
     return {
       ...super.defaults(),
       _model_name: FDC3ChannelJoinModel.model_name,
@@ -67,7 +69,11 @@ export class FDC3ChannelJoinModel extends DOMWidgetModel {
     }
   }
 
-  async initialize(attr: any, opts: any) {
+  // TODO - the DOMWidgetModel type should just return void, though no complaints yet?
+  async initialize(
+    attr: Backbone.ObjectHash,
+    opts: IBackboneModelOptions
+  ): Promise<void> {
     super.initialize(attr, opts)
     await fdc3.fdc3Ready()
     this.set('channelId', (await fdc3.getCurrentChannel())?.id)
@@ -94,32 +100,33 @@ export class FDC3ChannelJoinModel extends DOMWidgetModel {
 }
 
 export class FDC3ChannelJoinView extends DOMWidgetView {
-  constructor(opts: any) {
+  constructor(opts: Backbone.ViewOptions<WidgetModel>) {
     super(opts)
     this.model.bind('change', this.render.bind(this))
     this.selectChannel = this.selectChannel.bind(this)
     this.leaveChannel = this.leaveChannel.bind(this)
   }
 
-  async selectChannel(id: string) {
+  async selectChannel(id: string): Promise<void> {
     await fdc3.joinChannel(id)
     this.model.set('channelId', id)
     this.model.save_changes()
   }
 
-  async leaveChannel() {
+  async leaveChannel(): Promise<void> {
     await fdc3.leaveCurrentChannel()
     this.model.set('channelId', null)
     this.model.save_changes()
   }
 
-  render() {
+  render(): void {
     const props: Props = {
       channelId: this.model.get('channelId'),
       userChannels: this.model.get('userChannels'),
       onSelect: this.selectChannel,
       onLeave: this.leaveChannel,
     }
-    render(<ChannelPicker {...props} />, this.el)
+
+    preactRender(<ChannelPicker {...props} />, this.el)
   }
 }

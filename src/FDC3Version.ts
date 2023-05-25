@@ -4,6 +4,7 @@
 import {
   DOMWidgetModel,
   DOMWidgetView,
+  IBackboneModelOptions,
   ISerializers,
 } from '@jupyter-widgets/base'
 
@@ -12,7 +13,7 @@ import * as fdc3 from '@finos/fdc3'
 import { MODULE_NAME, MODULE_VERSION } from './version'
 
 export class FDC3VersionModel extends DOMWidgetModel {
-  defaults() {
+  defaults(): Backbone.ObjectHash {
     return {
       ...super.defaults(),
       _model_name: FDC3VersionModel.model_name,
@@ -25,7 +26,10 @@ export class FDC3VersionModel extends DOMWidgetModel {
     }
   }
 
-  async initialize(attr: any, opts: any) {
+  async initialize(
+    attr: Backbone.ObjectHash,
+    opts: IBackboneModelOptions
+  ): Promise<void> {
     super.initialize(attr, opts)
     await fdc3.fdc3Ready()
     const info = await fdc3.getInfo()
@@ -46,12 +50,12 @@ export class FDC3VersionModel extends DOMWidgetModel {
 }
 
 export class FDC3VersionView extends DOMWidgetView {
-  render() {
+  render(): void {
     this.value_changed()
     this.model.on('change:value', this.value_changed, this)
   }
 
-  value_changed() {
+  value_changed(): void {
     const fdc3Version = this.model.get('value')
     this.el.textContent = `FDC3 Version: ${fdc3Version}`
   }
