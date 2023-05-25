@@ -12,7 +12,7 @@ import * as fdc3 from '@finos/fdc3'
 import { MODULE_NAME, MODULE_VERSION } from './version'
 
 export class FDC3ConnectionStatusModel extends DOMWidgetModel {
-  defaults() {
+  defaults(): Backbone.ObjectHash {
     return {
       ...super.defaults(),
       _model_name: FDC3ConnectionStatusModel.model_name,
@@ -37,7 +37,7 @@ export class FDC3ConnectionStatusModel extends DOMWidgetModel {
 }
 
 export class FDC3ConnectionStatusView extends DOMWidgetView {
-  async render() {
+  async render(): Promise<void> {
     const channelColor = getChannelColor(
       isFalsyOrEmpty(window.fdc3) ? undefined : await fdc3.getCurrentChannel()
     )
@@ -58,7 +58,8 @@ export class FDC3ConnectionStatusView extends DOMWidgetView {
     this.el.appendChild(this.status)
   }
 
-  value_changed() {
+  // TODO does this method do anything?
+  value_changed(): string {
     return this.model.get('fdc3_info')
   }
 

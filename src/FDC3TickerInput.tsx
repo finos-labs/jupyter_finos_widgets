@@ -4,7 +4,9 @@
 import {
   DOMWidgetModel,
   DOMWidgetView,
+  IBackboneModelOptions,
   ISerializers,
+  WidgetModel,
 } from '@jupyter-widgets/base'
 
 import * as fdc3 from '@finos/fdc3'
@@ -49,7 +51,7 @@ const TickerInput = ({ value, error, onSubmit }: Props) => {
 export class FDC3TickerInputModel extends DOMWidgetModel {
   private _listener: any = null
 
-  defaults() {
+  defaults(): Backbone.ObjectHash {
     return {
       ...super.defaults(),
       _model_name: FDC3TickerInputModel.model_name,
@@ -63,7 +65,10 @@ export class FDC3TickerInputModel extends DOMWidgetModel {
     }
   }
 
-  async initialize(attr: any, opts: any) {
+  async initialize(
+    attr: Backbone.ObjectHash,
+    opts: IBackboneModelOptions
+  ): Promise<void> {
     super.initialize(attr, opts)
     this.on('change:value', async ({ changed: { value } }) => {
       await fdc3.fdc3Ready()
@@ -108,13 +113,13 @@ export class FDC3TickerInputModel extends DOMWidgetModel {
 }
 
 export class FDC3TickerInputView extends DOMWidgetView {
-  constructor(opts: any) {
+  constructor(opts: Backbone.ViewOptions<WidgetModel>) {
     super(opts)
     this.model.bind('change', this.render.bind(this))
     this.submit = this.submit.bind(this)
   }
 
-  submit(ticker: string) {
+  submit(ticker: string): void {
     console.log(ticker, this.model.get('value'))
     if (this.model.get('value') === ticker) {
       this.model.trigger('change:value', { changed: { value: ticker } })
@@ -124,7 +129,7 @@ export class FDC3TickerInputView extends DOMWidgetView {
     }
   }
 
-  render() {
+  render(): void {
     const props = {
       value: this.model.get('value'),
       error: this.model.get('error'),

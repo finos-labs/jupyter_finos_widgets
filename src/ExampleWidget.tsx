@@ -2,11 +2,12 @@ import {
   DOMWidgetView,
   DOMWidgetModel,
   ISerializers,
+  WidgetModel,
 } from '@jupyter-widgets/base'
 
 import { MODULE_NAME, MODULE_VERSION } from './version'
 
-import { render } from 'preact'
+import { render as preactRender } from 'preact'
 
 interface Props {
   greeting: string
@@ -17,7 +18,7 @@ const Example = ({ greeting }: Props) => {
 }
 
 export class ExampleModel extends DOMWidgetModel {
-  defaults() {
+  defaults(): Backbone.ObjectHash {
     return {
       ...super.defaults(),
       _model_name: ExampleModel.model_name,
@@ -44,12 +45,13 @@ export class ExampleModel extends DOMWidgetModel {
 }
 
 export class ExampleView extends DOMWidgetView {
-  constructor(opts: any) {
+  constructor(opts: Backbone.ViewOptions<WidgetModel>) {
     super(opts)
     this.model.bind('greeting', this.render.bind(this))
   }
 
-  render() {
-    render(<Example greeting={this.model.get('greeting')} />, this.el)
+  // the `preactRender` returns a void
+  render(): void {
+    preactRender(<Example greeting={this.model.get('greeting')} />, this.el)
   }
 }
