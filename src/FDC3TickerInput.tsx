@@ -11,7 +11,7 @@ import {
 
 import * as fdc3 from '@finos/fdc3'
 
-import { render } from 'preact'
+import { render as preactRender } from 'preact'
 import { useState, useEffect, useCallback } from 'preact/hooks'
 
 import { MODULE_NAME, MODULE_VERSION } from './version'
@@ -135,6 +135,7 @@ export class FDC3TickerInputView extends DOMWidgetView {
       error: this.model.get('error'),
       onSubmit: this.submit,
     }
-    render(<TickerInput {...props} />, this.el)
+
+    preactRender(<TickerInput {...props} />, this.el)
   }
 }
