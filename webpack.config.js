@@ -40,7 +40,7 @@ module.exports = [
   },
 
   /**
-   * Embeddable jupyter-finos-widgets bundle
+   * Embeddable jupyter_finos_widgets bundle
    *
    * This bundle is almost identical to the notebook extension bundle. The only
    * difference is in the configuration of the webpack public path for the
@@ -55,9 +55,9 @@ module.exports = [
       filename: 'index.js',
       path: path.resolve(__dirname, 'dist'),
       libraryTarget: 'amd',
-      library: 'jupyter-finos-widgets',
+      library: 'jupyter-finos_widgets',
       publicPath:
-        'https://unpkg.com/jupyter-finos-widgets@' + version + '/dist/',
+        'https://unpkg.com/jupyter_finos_widgets@' + version + '/dist/',
     },
     devtool: 'source-map',
     module: {
@@ -77,7 +77,7 @@ module.exports = [
     output: {
       filename: 'embed-bundle.js',
       path: path.resolve(__dirname, 'docs', 'source', '_static'),
-      library: 'jupyter-finos-widgets',
+      library: 'jupyter_finos_widgets',
       libraryTarget: 'amd',
     },
     module: {

@@ -6,7 +6,7 @@ define(function () {
   window['requirejs'].config({
     map: {
       '*': {
-        'jupyter-finos-widgets': 'nbextensions/jupyter_finos_widgets/index',
+        'jupyter_finos_widgets': 'nbextensions/jupyter_finos_widgets/index',
       },
     },
   })

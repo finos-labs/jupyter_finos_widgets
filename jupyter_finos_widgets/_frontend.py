@@ -8,5 +8,5 @@
 Information about the frontend package of the widgets.
 """
 
-module_name = "jupyter-finos-widgets"
+module_name = "jupyter_finos_widgets"
 module_version = "^0.1.0"
