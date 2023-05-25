@@ -37,16 +37,16 @@ const ContextDisplay = ({
 }: Props) => (
   <div>
     <div>
-      <label for="context-type">Select Context Type: </label>
+      <label htmlFor="context-type">Select Context Type: </label>
       <select
         name="context-type"
         value={contextType}
         onChange={(e: any) => onContextTypeChange(e.target.value)}
       >
-        {CONTEXT_TYPES.map((contextType) => {
+        {CONTEXT_TYPES.map((contextType, index) => {
           const contextName = contextType.split('.')[1]
           return (
-            <option value={contextType}>
+            <option value={contextType} key={index}>
               {contextName.charAt(0).toUpperCase() + contextName.slice(1)}
             </option>
           )

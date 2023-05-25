@@ -11,7 +11,7 @@ import * as widgetExports from './widget'
 
 import { MODULE_NAME, MODULE_VERSION } from './version'
 
-const EXTENSION_ID = 'jupyter-finos-widgets:plugin'
+const EXTENSION_ID = 'jupyter_finos_widgets:plugin'
 
 /**
  * The example plugin.

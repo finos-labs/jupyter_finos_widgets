@@ -1,5 +1,5 @@
 {
-  "name": "jupyter-finos-widgets",
+  "name": "jupyter_finos_widgets",
   "version": "0.1.0",
   "description": "A Custom Jupyter Widget Library",
   "keywords": [
@@ -71,6 +71,7 @@
     "eslint": "^7.4.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.32.2",
     "fs-extra": "^7.0.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.0.0",

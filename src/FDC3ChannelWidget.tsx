@@ -23,13 +23,13 @@ const ChannelPicker = ({
   onSelect,
   onLeave,
 }: Props) => (
-  <ul class="channel-list">
+  <ul className="channel-list">
     {[
       ...userChannels.map(({ displayMetadata: { name, color }, id }) => {
         return (
-          <li>
+          <li key={id}>
             <button
-              class="channel-button"
+              className="channel-button"
               style={{ backgroundColor: color }}
               disabled={channelId === id}
               onClick={onSelect.bind(null, id)}
@@ -39,8 +39,13 @@ const ChannelPicker = ({
           </li>
         )
       }),
-      <li>
-        <button class="leave-button" disabled={!channelId} onClick={onLeave}>
+      <li key="channel-picker-button-key">
+        <button
+          className="leave-button"
+          disabled={!channelId}
+          onClick={onLeave}
+          id="mwahahahahah-BUTTON"
+        >
           Leave
         </button>
       </li>,
