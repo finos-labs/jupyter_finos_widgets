@@ -101,12 +101,19 @@ export class DummyManager extends baseManager.ManagerBase {
 }
 
 export interface Constructor<T> {
-  new (attributes?: any, options?: any): T
+  new (
+    attributes?: any,
+    options?: any,
+    readyCheck?: any,
+    readyFormMs?: number
+  ): T
 }
 
 export function createTestModel<T extends widgets.WidgetModel>(
   constructor: Constructor<T>,
-  attributes?: Backbone.ObjectHash
+  attributes?: Backbone.ObjectHash,
+  readyCheck?: (readyFormMs?: number) => Promise<void>,
+  readyForMs?: number
 ): T {
   const id = widgets.uuid()
   const widget_manager = new DummyManager()
@@ -115,5 +122,5 @@ export function createTestModel<T extends widgets.WidgetModel>(
     model_id: id,
   }
 
-  return new constructor(attributes, modelOptions)
+  return new constructor(attributes, modelOptions, readyCheck, readyForMs)
 }
