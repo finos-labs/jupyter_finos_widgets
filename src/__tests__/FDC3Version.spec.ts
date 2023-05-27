@@ -1,11 +1,10 @@
 // Copyright (c) Jupyter Development Team.
 // Distributed under the terms of the Modified BSD License.
 
-import { mock } from 'jest-mock-extended'
+import { mock, mockReset } from 'jest-mock-extended'
 import { DesktopAgent } from '@finos/fdc3'
 
 import { createTestModel } from './utils'
-
 import {
   FDC3ReadyErrorMessage,
   FDC3VersionModel,
@@ -70,10 +69,15 @@ describe('FDC3VersionModel', () => {
 
   describe('when the fdc3 global is available', () => {
     it('stores the returned version number from global fdc3 call', (done) => {
+      const windowFDC3 = window.fdc3
+      if (windowFDC3 !== undefined) {
+        throw Error('FDC3 should be undefined')
+      }
+
       const mockFDC3 = mock<DesktopAgent>()
       const randomVersion = Math.random().toString()
 
-      mockFDC3.getInfo.calledWith().mockResolvedValue({
+      mockFDC3.getInfo.calledWith().mockResolvedValueOnce({
         fdc3Version: randomVersion,
         provider: 'Mock',
         optionalFeatures: {
@@ -92,6 +96,8 @@ describe('FDC3VersionModel', () => {
         expect(
           testModel.get('fdc3Version').includes(randomVersion)
         ).toBeTruthy()
+        window.fdc3 = windowFDC3
+        mockReset(mockFDC3)
         done()
       })
     })

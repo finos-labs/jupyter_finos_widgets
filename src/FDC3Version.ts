@@ -8,7 +8,6 @@ import {
   ISerializers,
   WidgetModel,
 } from '@jupyter-widgets/base'
-
 import * as fdc3 from '@finos/fdc3'
 
 import { MODULE_NAME, MODULE_VERSION } from './version'
