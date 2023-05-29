@@ -26,13 +26,16 @@ export class FDC3VersionModel extends DOMWidgetModel {
   constructor(
     attr: Backbone.ObjectHash,
     opts: IBackboneModelOptions,
+    autoLoad = true,
     readyCheck: (x?: number) => Promise<void> = fdc3.fdc3Ready,
     readyFormMs?: number
   ) {
     super(attr, opts)
     this.readyCheck = readyCheck
     this.readyForMs = readyFormMs
-    this.retrieveFDC3Version()
+    if (autoLoad) {
+      this.retrieveFDC3Version()
+    }
   }
 
   defaults(): Backbone.ObjectHash {
@@ -80,7 +83,9 @@ export class FDC3VersionView extends DOMWidgetView {
     this.listenTo(this.model, 'change:fdc3Version', this.render)
   }
 
-  render(): void {
+  render(): FDC3VersionView {
     this.el.textContent = this.model.get('fdc3Version')
+
+    return this
   }
 }

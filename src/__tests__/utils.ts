@@ -104,6 +104,7 @@ export interface Constructor<T> {
   new (
     attributes?: any,
     options?: any,
+    autoLoad?: any,
     readyCheck?: any,
     readyFormMs?: number
   ): T
@@ -112,6 +113,7 @@ export interface Constructor<T> {
 export function createTestModel<T extends widgets.WidgetModel>(
   constructor: Constructor<T>,
   attributes?: Backbone.ObjectHash,
+  autoLoad?: boolean,
   readyCheck?: (readyFormMs?: number) => Promise<void>,
   readyForMs?: number
 ): T {
@@ -122,5 +124,11 @@ export function createTestModel<T extends widgets.WidgetModel>(
     model_id: id,
   }
 
-  return new constructor(attributes, modelOptions, readyCheck, readyForMs)
+  return new constructor(
+    attributes,
+    modelOptions,
+    autoLoad,
+    readyCheck,
+    readyForMs
+  )
 }
