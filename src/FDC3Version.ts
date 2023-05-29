@@ -11,13 +11,12 @@ import {
 import * as fdc3 from '@finos/fdc3'
 
 import { MODULE_NAME, MODULE_VERSION } from './version'
-
-export const FDC3ReadyErrorMessage = 'Timed out waiting for `fdc3Ready` event.'
-
-export const FDC3_VERSION_DEFAULT = 'loading...'
-export const FDC3_NOT_FOUND_MESSAGE = 'FDC3 Not Found'
-export const FDC3_READY_UNKNOWN_ERROR =
-  'Unknown error - please contact developers. FDC3 was not found in a strange way.'
+import {
+  FDC3_READY_ERROR_MSG,
+  FDC3_NOT_FOUND_MSG,
+  FDC3_READY_UNKNOWN_ERROR,
+  FDC3_VERSION_DEFAULT,
+} from './constants'
 
 export class FDC3VersionModel extends DOMWidgetModel {
   private readyCheck: (readyForMs?: number) => Promise<void>
@@ -57,8 +56,8 @@ export class FDC3VersionModel extends DOMWidgetModel {
       const { fdc3Version } = await fdc3.getInfo()
       this.set('fdc3Version', `FDC3 Version: ${fdc3Version}`)
     } catch (e: unknown) {
-      if (e instanceof Error && e.message === FDC3ReadyErrorMessage) {
-        this.set('fdc3Version', FDC3_NOT_FOUND_MESSAGE)
+      if (e instanceof Error && e.message === FDC3_READY_ERROR_MSG) {
+        this.set('fdc3Version', FDC3_NOT_FOUND_MSG)
       } else {
         this.set('fdc3Version', FDC3_READY_UNKNOWN_ERROR)
       }

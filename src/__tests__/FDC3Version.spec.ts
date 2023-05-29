@@ -6,13 +6,12 @@ import { DesktopAgent } from '@finos/fdc3'
 
 import { createTestModel } from './utils'
 import {
-  FDC3ReadyErrorMessage,
-  FDC3VersionModel,
-  FDC3VersionView,
-  FDC3_NOT_FOUND_MESSAGE,
+  FDC3_READY_ERROR_MSG,
+  FDC3_NOT_FOUND_MSG,
   FDC3_READY_UNKNOWN_ERROR,
   FDC3_VERSION_DEFAULT,
-} from '..'
+} from '../constants'
+import { FDC3VersionModel, FDC3VersionView } from '..'
 
 describe('FDC3VersionModel', () => {
   describe('when the fdc3 global is not available', () => {
@@ -24,7 +23,7 @@ describe('FDC3VersionModel', () => {
 
     it('uses the not found message when the fdc3 timeout error occurs', (done) => {
       const mockReady = async () => {
-        throw new Error(FDC3ReadyErrorMessage)
+        throw new Error(FDC3_READY_ERROR_MSG)
       }
       const testModel = createTestModel(
         FDC3VersionModel,
@@ -34,7 +33,7 @@ describe('FDC3VersionModel', () => {
       )
 
       testModel.once('change:fdc3Version', () => {
-        expect(testModel.get('fdc3Version')).toEqual(FDC3_NOT_FOUND_MESSAGE)
+        expect(testModel.get('fdc3Version')).toEqual(FDC3_NOT_FOUND_MSG)
         done()
       })
     })
@@ -83,7 +82,7 @@ describe('FDC3VersionModel', () => {
       )
 
       testModel.once('change:fdc3Version', () => {
-        expect(testModel.get('fdc3Version')).toEqual(FDC3_NOT_FOUND_MESSAGE)
+        expect(testModel.get('fdc3Version')).toEqual(FDC3_NOT_FOUND_MSG)
         done()
       })
     })
@@ -159,9 +158,7 @@ describe('FDC3VersionView', () => {
       document.getElementById('test-fixture')?.appendChild(testView.el)
 
       testModel.once('change:fdc3Version', () => {
-        expect(fixtureDiv.children[0].textContent).toEqual(
-          FDC3_NOT_FOUND_MESSAGE
-        )
+        expect(fixtureDiv.children[0].textContent).toEqual(FDC3_NOT_FOUND_MSG)
         done()
       })
     })
