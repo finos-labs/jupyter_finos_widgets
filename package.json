@@ -23,6 +23,7 @@
     "email": "info@weareadaptive.com"
   },
   "main": "lib/index.js",
+  "type": "module",
   "types": "./lib/index.d.ts",
   "repository": {
     "type": "git",
