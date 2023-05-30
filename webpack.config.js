@@ -55,7 +55,7 @@ module.exports = [
       filename: 'index.js',
       path: path.resolve(__dirname, 'dist'),
       libraryTarget: 'amd',
-      library: 'jupyter-finos_widgets',
+      library: 'jupyter_finos_widgets',
       publicPath:
         'https://unpkg.com/jupyter_finos_widgets@' + version + '/dist/',
     },
