@@ -8,11 +8,9 @@ import {
   ISerializers,
   WidgetModel,
 } from '@jupyter-widgets/base'
-
+import { createRoot } from 'react-dom/client'
+import { useState, useCallback, useEffect } from 'react'
 import * as fdc3 from '@finos/fdc3'
-
-import { render as preactRender } from 'preact'
-import { useState, useEffect, useCallback } from 'preact/hooks'
 
 import { MODULE_NAME, MODULE_VERSION } from './version'
 
@@ -129,13 +127,15 @@ export class FDC3TickerInputView extends DOMWidgetView {
     }
   }
 
-  render(): void {
+  render(): FDC3TickerInputView {
     const props = {
       value: this.model.get('value'),
       error: this.model.get('error'),
       onSubmit: this.submit,
     }
 
-    preactRender(<TickerInput {...props} />, this.el)
+    createRoot(this.el).render(<TickerInput {...props} />)
+
+    return this
   }
 }

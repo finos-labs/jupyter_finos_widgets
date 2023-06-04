@@ -1,8 +1,10 @@
 // Copyright (c) Jupyter Development Team.
 // Distributed under the terms of the Modified BSD License.
 
+import React from 'react'
 import { mock, mockReset } from 'jest-mock-extended'
 import { DesktopAgent } from '@finos/fdc3'
+import { act, render, screen } from '@testing-library/react'
 
 import { createTestModel } from './utils'
 import {
@@ -11,7 +13,8 @@ import {
   FDC3_READY_UNKNOWN_ERROR,
   FDC3_VERSION_DEFAULT,
 } from '../constants'
-import { FDC3VersionModel, FDC3VersionView } from '..'
+import { FDC3VersionModel } from '..'
+import { FDC3VersionComponent } from '../FDC3Version.component'
 
 describe('FDC3VersionModel', () => {
   describe('when the fdc3 global is not available', () => {
@@ -129,14 +132,10 @@ describe('FDC3VersionView', () => {
   describe('when the fdc3 global is not available', () => {
     it('displays the correct defaults', () => {
       const testModel = createTestModel(FDC3VersionModel, {}, false)
-      const testView = new FDC3VersionView({ model: testModel })
-
-      document.body.innerHTML = testView.render().el.outerHTML
-
-      const allDivs = document.getElementsByTagName('div')
-
-      expect(allDivs.length).toEqual(1)
-      expect(allDivs[0].textContent).toEqual(FDC3_VERSION_DEFAULT)
+      act(() => {
+        render(<FDC3VersionComponent model={testModel} />)
+      })
+      expect(screen.findByText(FDC3_VERSION_DEFAULT))
     })
 
     it('displays the fdc3 not found message as it content', (done) => {
@@ -147,19 +146,14 @@ describe('FDC3VersionView', () => {
         undefined,
         1
       )
-      const testView = new FDC3VersionView({ model: testModel })
 
-      document.body.innerHTML = '<div id="test-fixture"></div>'
-      const fixtureDiv = document.getElementById('test-fixture')
-      if (fixtureDiv === null) {
-        throw Error('Issue creating fixture div')
-      }
-      fixtureDiv.appendChild(testView.el)
-      document.getElementById('test-fixture')?.appendChild(testView.el)
+      act(() => {
+        render(<FDC3VersionComponent model={testModel} />)
 
-      testModel.once('change:fdc3Version', () => {
-        expect(fixtureDiv.children[0].textContent).toEqual(FDC3_NOT_FOUND_MSG)
-        done()
+        testModel.once('change:fdc3Version', () => {
+          expect(screen.findByText(FDC3_NOT_FOUND_MSG))
+          done()
+        })
       })
     })
   })
@@ -195,24 +189,16 @@ describe('FDC3VersionView', () => {
         undefined,
         1
       )
-      const testView = new FDC3VersionView({ model: testModel })
+      act(() => {
+        render(<FDC3VersionComponent model={testModel} />)
 
-      document.body.innerHTML = '<div id="test-fixture"></div>'
-      const fixtureDiv = document.getElementById('test-fixture')
-      if (fixtureDiv === null) {
-        throw Error('Issue creating fixture div')
-      }
-      fixtureDiv.appendChild(testView.el)
-      document.getElementById('test-fixture')?.appendChild(testView.el)
+        testModel.once('change:fdc3Version', () => {
+          expect(screen.findByText(randomVersion))
 
-      testModel.once('change:fdc3Version', () => {
-        expect(
-          fixtureDiv.children[0].textContent?.includes(randomVersion)
-        ).toBeTruthy()
-
-        window.fdc3 = windowFDC3
-        mockReset(mockFDC3)
-        done()
+          window.fdc3 = windowFDC3
+          mockReset(mockFDC3)
+          done()
+        })
       })
     })
   })

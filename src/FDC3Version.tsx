@@ -6,9 +6,9 @@ import {
   DOMWidgetView,
   IBackboneModelOptions,
   ISerializers,
-  WidgetModel,
 } from '@jupyter-widgets/base'
 import * as fdc3 from '@finos/fdc3'
+import { createRoot } from 'react-dom/client'
 
 import { MODULE_NAME, MODULE_VERSION } from './version'
 import {
@@ -17,6 +17,8 @@ import {
   FDC3_READY_UNKNOWN_ERROR,
   FDC3_VERSION_DEFAULT,
 } from './constants'
+import React from 'react'
+import { FDC3VersionComponent } from './FDC3Version.component'
 
 export class FDC3VersionModel extends DOMWidgetModel {
   private readyCheck: (readyForMs?: number) => Promise<void>
@@ -77,13 +79,12 @@ export class FDC3VersionModel extends DOMWidgetModel {
 }
 
 export class FDC3VersionView extends DOMWidgetView {
-  constructor(opts: Backbone.ViewOptions<WidgetModel>) {
-    super(opts)
-    this.listenTo(this.model, 'change:fdc3Version', this.render)
-  }
-
   render(): FDC3VersionView {
-    this.el.textContent = this.model.get('fdc3Version')
+    createRoot(this.el).render(
+      <React.StrictMode>
+        <FDC3VersionComponent model={this.model} />
+      </React.StrictMode>
+    )
 
     return this
   }

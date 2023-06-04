@@ -4,10 +4,9 @@ import {
   ISerializers,
   WidgetModel,
 } from '@jupyter-widgets/base'
+import { createRoot } from 'react-dom/client'
 
 import { MODULE_NAME, MODULE_VERSION } from './version'
-
-import { render as preactRender } from 'preact'
 
 interface Props {
   greeting: string
@@ -50,8 +49,10 @@ export class ExampleView extends DOMWidgetView {
     this.model.bind('greeting', this.render.bind(this))
   }
 
-  // the `preactRender` returns a void
-  render(): void {
-    preactRender(<Example greeting={this.model.get('greeting')} />, this.el)
+  render(): ExampleView {
+    createRoot(this.el).render(
+      <Example greeting={this.model.get('greeting')} />
+    )
+    return this
   }
 }

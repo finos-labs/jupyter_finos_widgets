@@ -5,10 +5,8 @@ import {
   ISerializers,
   WidgetModel,
 } from '@jupyter-widgets/base'
-
+import { createRoot } from 'react-dom/client'
 import * as fdc3 from '@finos/fdc3'
-
-import { render as preactRender } from 'preact'
 
 import { MODULE_NAME, MODULE_VERSION } from './version'
 
@@ -119,7 +117,7 @@ export class FDC3ChannelJoinView extends DOMWidgetView {
     this.model.save_changes()
   }
 
-  render(): void {
+  render(): FDC3ChannelJoinView {
     const props: Props = {
       channelId: this.model.get('channelId'),
       userChannels: this.model.get('userChannels'),
@@ -127,6 +125,8 @@ export class FDC3ChannelJoinView extends DOMWidgetView {
       onLeave: this.leaveChannel,
     }
 
-    preactRender(<ChannelPicker {...props} />, this.el)
+    createRoot(this.el).render(<ChannelPicker {...props} />)
+
+    return this
   }
 }
