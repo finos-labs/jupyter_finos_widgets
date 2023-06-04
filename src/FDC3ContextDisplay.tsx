@@ -8,9 +8,7 @@ import {
   ISerializers,
   WidgetModel,
 } from '@jupyter-widgets/base'
-
-import { render as preactRender } from 'preact'
-
+import { createRoot } from 'react-dom/client'
 import * as fdc3 from '@finos/fdc3'
 
 import { MODULE_NAME, MODULE_VERSION } from './version'
@@ -115,7 +113,7 @@ export class FDC3ContextDisplayView extends DOMWidgetView {
     this.model.bind('change', this.render.bind(this))
   }
 
-  render(): void {
+  render(): FDC3ContextDisplayView {
     const props: Props = {
       contextType: this.model.get('contextType'),
       context: this.model.get('context'),
@@ -126,6 +124,8 @@ export class FDC3ContextDisplayView extends DOMWidgetView {
       },
     }
 
-    preactRender(<ContextDisplay {...props} />, this.el)
+    createRoot(this.el).render(<ContextDisplay {...props} />)
+
+    return this
   }
 }
