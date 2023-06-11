@@ -1,50 +1,10 @@
-// Copyright (c) Adaptive
-// Distributed under the terms of the Modified BSD License.
-
 import {
   DOMWidgetModel,
-  DOMWidgetView,
   IBackboneModelOptions,
   ISerializers,
-  WidgetModel,
 } from '@jupyter-widgets/base'
-import { createRoot } from 'react-dom/client'
-import { useState, useCallback, useEffect } from 'react'
 import * as fdc3 from '@finos/fdc3'
-
-import { MODULE_NAME, MODULE_VERSION } from './version'
-
-interface Props {
-  value: string
-  error: string
-  onSubmit: (v: any) => void
-}
-
-const TickerInput = ({ value, error, onSubmit }: Props) => {
-  const [ticker, setTicker] = useState(value)
-  const onInput = (e: any) => setTicker(e.target.value)
-  const submit = useCallback(
-    (e: any) => {
-      e.preventDefault()
-      onSubmit(ticker)
-    },
-    [ticker]
-  )
-
-  useEffect(() => {
-    setTicker(value)
-  }, [value])
-
-  return (
-    <div>
-      <form onSubmit={submit}>
-        <input type="text" value={ticker} onInput={onInput} />
-        <input type="submit" value="Submit" />
-        <p style={{ color: 'red' }}>{error}</p>
-      </form>
-    </div>
-  )
-}
+import { MODULE_NAME, MODULE_VERSION } from '../../version'
 
 export class FDC3TickerInputModel extends DOMWidgetModel {
   private _listener: any = null
@@ -108,34 +68,4 @@ export class FDC3TickerInputModel extends DOMWidgetModel {
   static view_name = 'FDC3TickerInputView'
   static view_module = MODULE_NAME
   static view_module_version = MODULE_VERSION
-}
-
-export class FDC3TickerInputView extends DOMWidgetView {
-  constructor(opts: Backbone.ViewOptions<WidgetModel>) {
-    super(opts)
-    this.model.bind('change', this.render.bind(this))
-    this.submit = this.submit.bind(this)
-  }
-
-  submit(ticker: string): void {
-    console.log(ticker, this.model.get('value'))
-    if (this.model.get('value') === ticker) {
-      this.model.trigger('change:value', { changed: { value: ticker } })
-    } else {
-      this.model.set('value', ticker)
-      this.model.save_changes()
-    }
-  }
-
-  render(): FDC3TickerInputView {
-    const props = {
-      value: this.model.get('value'),
-      error: this.model.get('error'),
-      onSubmit: this.submit,
-    }
-
-    createRoot(this.el).render(<TickerInput {...props} />)
-
-    return this
-  }
 }
