@@ -1,18 +1,17 @@
 // Copyright (c) Jupyter Development Team.
 // Distributed under the terms of the Modified BSD License.
 
-import React from 'react'
 import { mock, mockReset } from 'jest-mock-extended'
 import { DesktopAgent } from '@finos/fdc3'
 import { act, render, screen } from '@testing-library/react'
 
-import { createTestModel } from './utils'
+import { createTestModel } from '../../../test-utils'
 import {
   FDC3_READY_ERROR_MSG,
   FDC3_NOT_FOUND_MSG,
   FDC3_READY_UNKNOWN_ERROR,
   FDC3_VERSION_DEFAULT,
-} from '../constants'
+} from '../../../constants'
 import { FDC3VersionModel } from '..'
 import { FDC3VersionComponent } from '../FDC3Version.component'
 

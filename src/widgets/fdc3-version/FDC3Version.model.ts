@@ -3,22 +3,18 @@
 
 import {
   DOMWidgetModel,
-  DOMWidgetView,
   IBackboneModelOptions,
   ISerializers,
 } from '@jupyter-widgets/base'
 import * as fdc3 from '@finos/fdc3'
-import { createRoot } from 'react-dom/client'
 
-import { MODULE_NAME, MODULE_VERSION } from './version'
+import { MODULE_NAME, MODULE_VERSION } from '../../version'
 import {
   FDC3_READY_ERROR_MSG,
   FDC3_NOT_FOUND_MSG,
   FDC3_READY_UNKNOWN_ERROR,
   FDC3_VERSION_DEFAULT,
-} from './constants'
-import React from 'react'
-import { FDC3VersionComponent } from './FDC3Version.component'
+} from '../../constants'
 
 export class FDC3VersionModel extends DOMWidgetModel {
   private readyCheck: (readyForMs?: number) => Promise<void>
@@ -76,16 +72,4 @@ export class FDC3VersionModel extends DOMWidgetModel {
   static view_name = 'FDC3VersionView'
   static view_module = MODULE_NAME
   static view_module_version = MODULE_VERSION
-}
-
-export class FDC3VersionView extends DOMWidgetView {
-  render(): FDC3VersionView {
-    createRoot(this.el).render(
-      <React.StrictMode>
-        <FDC3VersionComponent model={this.model} />
-      </React.StrictMode>
-    )
-
-    return this
-  }
 }
