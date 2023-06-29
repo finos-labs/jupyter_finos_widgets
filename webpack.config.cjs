@@ -27,7 +27,7 @@ module.exports = [
     entry: './src/extension.ts',
     output: {
       filename: 'index.js',
-      path: path.resolve(__dirname, 'jupyter_finos_widgets', 'nbextension'),
+      path: path.resolve(__dirname, 'jupyter_fdc3_widgets', 'nbextension'),
       libraryTarget: 'amd',
       publicPath: '',
     },
@@ -40,7 +40,7 @@ module.exports = [
   },
 
   /**
-   * Embeddable jupyter_finos_widgets bundle
+   * Embeddable jupyter_fdc3_widgets bundle
    *
    * This bundle is almost identical to the notebook extension bundle. The only
    * difference is in the configuration of the webpack public path for the
@@ -55,9 +55,9 @@ module.exports = [
       filename: 'index.js',
       path: path.resolve(__dirname, 'dist'),
       libraryTarget: 'amd',
-      library: 'jupyter_finos_widgets',
+      library: 'jupyter_fdc3_widgets',
       publicPath:
-        'https://unpkg.com/jupyter_finos_widgets@' + version + '/dist/',
+        'https://unpkg.com/jupyter_fdc3_widgets@' + version + '/dist/',
     },
     devtool: 'source-map',
     module: {
@@ -77,7 +77,7 @@ module.exports = [
     output: {
       filename: 'embed-bundle.js',
       path: path.resolve(__dirname, 'docs', 'source', '_static'),
-      library: 'jupyter_finos_widgets',
+      library: 'jupyter_fdc3_widgets',
       libraryTarget: 'amd',
     },
     module: {
