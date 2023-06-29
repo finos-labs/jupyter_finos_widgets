@@ -6,7 +6,7 @@ Developer install
 To install a developer version of jupyter_fdc3_widgets, you will first need to clone
 the repository::
 
-    git clone https://github.com/chuck-adaptive/jupyter_fdc3_widgets
+    git clone https://github.com/finos-labs/jupyter_finos_widgets
     cd jupyter_fdc3_widgets
 
 Next, install it with a develop install using pip::
