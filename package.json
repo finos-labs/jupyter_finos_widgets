@@ -13,9 +13,9 @@
     "dist/*.js",
     "css/*.css"
   ],
-  "homepage": "https://github.com/chuck-adaptive/jupyter_finos_widgets",
+  "homepage": "https://github.com/finos-labs/jupyter_finos_widgets",
   "bugs": {
-    "url": "https://github.com/chuck-adaptive/jupyter_finos_widgets/issues"
+    "url": "https://github.com/finos-labs/jupyter_finos_widgets/issues"
   },
   "license": "BSD-3-Clause",
   "author": {
@@ -27,7 +27,7 @@
   "types": "./lib/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chuck-adaptive/jupyter_finos_widgets"
+    "url": "https://github.com/finos-labs/jupyter_finos_widgets"
   },
   "scripts": {
     "build": "yarn run build:lib && yarn run build:nbextension && yarn run build:labextension:dev",

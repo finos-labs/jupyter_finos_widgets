@@ -55,7 +55,7 @@ test = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/chuck-adaptive/jupyter_fdc3_widgets"
+Homepage = "https://github.com/finos-labs/jupyter_finos_widgets"
 
 [tool.hatch.build]
 artifacts = [
