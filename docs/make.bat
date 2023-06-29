@@ -9,7 +9,7 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=source
 set BUILDDIR=build
-set SPHINXPROJ=jupyter_finos_widgets
+set SPHINXPROJ=jupyter_fdc3_widgets
 
 if "%1" == "" goto help
 

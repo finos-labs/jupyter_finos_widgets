@@ -9,4 +9,4 @@ coverage:
       default:
         target: 0%
 ignore:
-  - "jupyter_finos_widgets/tests"
+  - "jupyter_fdc3_widgets/tests"

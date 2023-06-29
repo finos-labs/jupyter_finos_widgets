@@ -1,6 +1,6 @@
-# Contributing to jupyter_finos_widgets
+# Contributing to jupyter_fdc3_widgets
 
-jupyter_finos_widgets is [Apache 2.0 licensed](LICENSE) and accepts contributions via git pull requests.  Each commit must include a DCO line in the git commit message:
+jupyter_fdc3_widgets is [Apache 2.0 licensed](LICENSE) and accepts contributions via git pull requests.  Each commit must include a DCO line in the git commit message:
 
 `Signed-off-by: GitHub User Name <your.email@example.com>`
 

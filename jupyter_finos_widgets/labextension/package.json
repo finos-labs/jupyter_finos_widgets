@@ -1,5 +1,5 @@
 {
-  "name": "jupyter_fdc3_widgets",
+  "name": "jupyter_finos_widgets",
   "version": "0.1.0",
   "description": "A Custom Jupyter Widget Library",
   "keywords": [
@@ -38,8 +38,8 @@
     "build:nbextension": "webpack",
     "clean": "yarn run clean:lib && yarn run clean:nbextension && yarn run clean:labextension",
     "clean:lib": "rimraf lib",
-    "clean:labextension": "rimraf jupyter_fdc3_widgets/labextension",
-    "clean:nbextension": "rimraf jupyter_fdc3_widgets/nbextension/static/index.js",
+    "clean:labextension": "rimraf jupyter_finos_widgets/labextension",
+    "clean:nbextension": "rimraf jupyter_finos_widgets/nbextension/static/index.js",
     "lint": "eslint . --ext .ts,.tsx --fix",
     "lint:check": "eslint . --ext .ts,.tsx",
     "prepack": "yarn run build:lib",
@@ -51,8 +51,12 @@
     "watch:labextension": "jupyter labextension watch ."
   },
   "dependencies": {
+    "@connectifi/agent-web": "1.2.14",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@finos/fdc3": "^2.0.1",
     "@jupyter-widgets/base": "^1.1.10 || ^2 || ^3 || ^4 || ^5 || ^6",
+    "@mui/material": "^5.13.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -95,7 +99,7 @@
   },
   "jupyterlab": {
     "extension": "lib/plugin",
-    "outputDir": "jupyter_fdc3_widgets/labextension/",
+    "outputDir": "jupyter_finos_widgets/labextension/",
     "sharedPackages": {
       "@jupyter-widgets/base": {
         "bundled": false,
@@ -109,6 +113,10 @@
         "bundled": true,
         "singleton": true
       }
+    },
+    "_build": {
+      "load": "static/remoteEntry.db93436be7769182806e.js",
+      "extension": "./extension"
     }
   }
 }

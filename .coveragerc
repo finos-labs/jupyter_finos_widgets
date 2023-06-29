@@ -1,2 +1,2 @@
 [run]
-omit = jupyter_finos_widgets/tests/*
+omit = jupyter_fdc3_widgets/tests/*

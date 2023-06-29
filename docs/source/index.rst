@@ -1,5 +1,5 @@
 
-jupyter_finos_widgets
+jupyter_fdc3_widgets
 =====================================
 
 Version: |release|
@@ -10,13 +10,13 @@ A Custom Jupyter Widget Library
 Quickstart
 ----------
 
-To get started with jupyter_finos_widgets, install with pip::
+To get started with jupyter_fdc3_widgets, install with pip::
 
-    pip install jupyter_finos_widgets
+    pip install jupyter_fdc3_widgets
 
 or with conda::
 
-    conda install jupyter_finos_widgets
+    conda install jupyter_fdc3_widgets
 
 
 Contents

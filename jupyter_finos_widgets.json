@@ -1,5 +1,5 @@
 {
   "load_extensions": {
-    "jupyter_finos_widgets/extension": true
+    "jupyter_fdc3_widgets/extension": true
   }
 }
