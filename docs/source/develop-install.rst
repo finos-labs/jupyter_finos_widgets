@@ -3,11 +3,11 @@ Developer install
 =================
 
 
-To install a developer version of jupyter_finos_widgets, you will first need to clone
+To install a developer version of jupyter_fdc3_widgets, you will first need to clone
 the repository::
 
-    git clone https://github.com/chuck-adaptive/jupyter_finos_widgets
-    cd jupyter_finos_widgets
+    git clone https://github.com/chuck-adaptive/jupyter_fdc3_widgets
+    cd jupyter_fdc3_widgets
 
 Next, install it with a develop install using pip::
 
@@ -17,9 +17,9 @@ Next, install it with a develop install using pip::
 If you are planning on working on the JS/frontend code, you should also do
 a link installation of the extension::
 
-    jupyter nbextension install [--sys-prefix / --user / --system] --symlink --py jupyter_finos_widgets
+    jupyter nbextension install [--sys-prefix / --user / --system] --symlink --py jupyter_fdc3_widgets
 
-    jupyter nbextension enable [--sys-prefix / --user / --system] --py jupyter_finos_widgets
+    jupyter nbextension enable [--sys-prefix / --user / --system] --py jupyter_fdc3_widgets
 
 with the `appropriate flag`_. Or, if you are using Jupyterlab::
 

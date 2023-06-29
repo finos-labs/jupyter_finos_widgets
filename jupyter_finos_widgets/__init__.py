@@ -26,7 +26,7 @@ def _jupyter_labextension_paths():
     """
     return [{
         'src': 'labextension',
-        'dest': 'jupyter_finos_widgets',
+        'dest': 'jupyter_fdc3_widgets',
     }]
 
 
@@ -49,6 +49,6 @@ def _jupyter_nbextension_paths():
     return [{
         'section': 'notebook',
         'src': 'nbextension',
-        'dest': 'jupyter_finos_widgets',
-        'require': 'jupyter_finos_widgets/extension'
+        'dest': 'jupyter_fdc3_widgets',
+        'require': 'jupyter_fdc3_widgets/extension'
     }]

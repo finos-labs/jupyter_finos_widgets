@@ -30,8 +30,8 @@ yarn run build
 For classic notebook, you need to run:
 
 ```
-jupyter nbextension install --sys-prefix --symlink --overwrite --py jupyter_finos_widgets
-jupyter nbextension enable --sys-prefix --py jupyter_finos_widgets
+jupyter nbextension install --sys-prefix --symlink --overwrite --py jupyter_fdc3_widgets
+jupyter nbextension enable --sys-prefix --py jupyter_fdc3_widgets
 ```
 
 Note that the `--symlink` flag doesn't work on Windows, so you will here have to run

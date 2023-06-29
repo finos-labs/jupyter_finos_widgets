@@ -6,7 +6,7 @@ requires = [
 build-backend = "hatchling.build"
 
 [project]
-name = "jupyter_finos_widgets"
+name = "jupyter_fdc3_widgets"
 description = "A Custom Jupyter Widget Library"
 readme = "README.md"
 license = { file = "LICENSE.txt" }
@@ -55,20 +55,20 @@ test = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/chuck-adaptive/jupyter_finos_widgets"
+Homepage = "https://github.com/chuck-adaptive/jupyter_fdc3_widgets"
 
 [tool.hatch.build]
 artifacts = [
-    "jupyter_finos_widgets/nbextension/index.*",
-    "jupyter_finos_widgets/labextension/*.tgz",
-    "jupyter_finos_widgets/labextension",
+    "jupyter_fdc3_widgets/nbextension/index.*",
+    "jupyter_fdc3_widgets/labextension/*.tgz",
+    "jupyter_fdc3_widgets/labextension",
 ]
 
 [tool.hatch.build.targets.wheel.shared-data]
-"jupyter_finos_widgets/nbextension" = "share/jupyter/nbextensions/jupyter_finos_widgets"
-"jupyter_finos_widgets/labextension" = "share/jupyter/labextensions/jupyter_finos_widgets"
-"./install.json" = "share/jupyter/labextensions/jupyter_finos_widgets/install.json"
-"./jupyter_finos_widgets.json" = "etc/jupyter/nbconfig/notebook.d/jupyter_finos_widgets.json"
+"jupyter_fdc3_widgets/nbextension" = "share/jupyter/nbextensions/jupyter_fdc3_widgets"
+"jupyter_fdc3_widgets/labextension" = "share/jupyter/labextensions/jupyter_fdc3_widgets"
+"./install.json" = "share/jupyter/labextensions/jupyter_fdc3_widgets/install.json"
+"./jupyter_fdc3_widgets.json" = "etc/jupyter/nbconfig/notebook.d/jupyter_fdc3_widgets.json"
 
 [tool.hatch.build.targets.sdist]
 exclude = [
@@ -78,12 +78,12 @@ exclude = [
 [tool.hatch.build.hooks.jupyter-builder]
 build-function = "hatch_jupyter_builder.npm_builder"
 ensured-targets = [
-    "jupyter_finos_widgets/nbextension/index.js",
-    "jupyter_finos_widgets/labextension/package.json",
+    "jupyter_fdc3_widgets/nbextension/index.js",
+    "jupyter_fdc3_widgets/labextension/package.json",
 ]
 skip-if-exists = [
-    "jupyter_finos_widgets/nbextension/index.js",
-    "jupyter_finos_widgets/labextension/package.json",
+    "jupyter_fdc3_widgets/nbextension/index.js",
+    "jupyter_fdc3_widgets/labextension/package.json",
 ]
 dependencies = [
     "hatch-jupyter-builder>=0.5.0",
@@ -100,7 +100,7 @@ field = [
 ]
 file = [
     { src = "pyproject.toml", version_template = "version = \"{major}.{minor}.{patch}{channel}{release}\"" },
-    { src = "jupyter_finos_widgets/_version.py" },
+    { src = "jupyter_fdc3_widgets/_version.py" },
 ]
 
 [tool.tbump.version]

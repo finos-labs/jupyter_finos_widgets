@@ -2,7 +2,7 @@
 
 <img align="right" width="40%" src="https://www.finos.org/hubfs/FINOS/finos-logo/FINOS_Icon_Wordmark_Name_RGB_horizontal.png">
 
-# jupyter_finos_widgets
+# jupyter_fdc3_widgets
 
 FDC3 enabled Jupyter Widgets
 
@@ -11,13 +11,13 @@ FDC3 enabled Jupyter Widgets
 You can install using `pip`:
 
 ```bash
-pip install jupyter_finos_widgets
+pip install jupyter_fdc3_widgets
 ```
 
 If you are using Jupyter Notebook 5.2 or earlier, you may also need to enable
 the nbextension:
 ```bash
-jupyter nbextension enable --py [--sys-prefix|--user|--system] jupyter_finos_widgets
+jupyter nbextension enable --py [--sys-prefix|--user|--system] jupyter_fdc3_widgets
 ```
 
 ## About

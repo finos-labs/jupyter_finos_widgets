@@ -9,7 +9,7 @@ include .coverage.rc
 include tsconfig.json
 include package.json
 include webpack.config.js
-include jupyter_finos_widgets/labextension/*.tgz
+include jupyter_fdc3_widgets/labextension/*.tgz
 
 # Documentation
 graft docs
@@ -26,7 +26,7 @@ graft tests
 prune tests/build
 
 # Javascript files
-graft jupyter_finos_widgets/nbextension
+graft jupyter_fdc3_widgets/nbextension
 graft src
 graft css
 prune **/node_modules

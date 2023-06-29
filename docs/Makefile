@@ -4,7 +4,7 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
-SPHINXPROJ    = jupyter_finos_widgets
+SPHINXPROJ    = jupyter_fdc3_widgets
 SOURCEDIR     = source
 BUILDDIR      = build
 

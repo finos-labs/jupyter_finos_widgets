@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# jupyter_finos_widgets documentation build configuration file
+# jupyter_fdc3_widgets documentation build configuration file
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -58,7 +58,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'jupyter_finos_widgets'
+project = 'jupyter_fdc3_widgets'
 copyright = '2023, Adaptive'
 author = 'Adaptive'
 
@@ -73,7 +73,7 @@ author = 'Adaptive'
 import os
 here = os.path.dirname(__file__)
 repo = os.path.join(here, '..', '..')
-_version_py = os.path.join(repo, 'jupyter_finos_widgets', '_version.py')
+_version_py = os.path.join(repo, 'jupyter_fdc3_widgets', '_version.py')
 version_ns = {}
 with open(_version_py) as f:
     exec(f.read(), version_ns)
@@ -120,7 +120,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'jupyter_finos_widgetsdoc'
+htmlhelp_basename = 'jupyter_fdc3_widgetsdoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -147,7 +147,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'jupyter_finos_widgets.tex', 'jupyter_finos_widgets Documentation',
+    (master_doc, 'jupyter_fdc3_widgets.tex', 'jupyter_fdc3_widgets Documentation',
      'Adaptive', 'manual'),
 ]
 
@@ -158,8 +158,8 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     (master_doc,
-    'jupyter_finos_widgets',
-    'jupyter_finos_widgets Documentation',
+    'jupyter_fdc3_widgets',
+    'jupyter_fdc3_widgets Documentation',
      [author], 1)
 ]
 
@@ -171,10 +171,10 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     (master_doc,
-     'jupyter_finos_widgets',
-     'jupyter_finos_widgets Documentation',
+     'jupyter_fdc3_widgets',
+     'jupyter_fdc3_widgets Documentation',
      author,
-     'jupyter_finos_widgets',
+     'jupyter_fdc3_widgets',
      'A Custom Jupyter Widget Library',
      'Miscellaneous'),
 ]
